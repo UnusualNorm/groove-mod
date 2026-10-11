@@ -1,0 +1,9 @@
+[submodule "lib/lua"]
+	path = lib/lua
+	url = https://github.com/lua/lua.git
+[submodule "lib/nnsdk"]
+	path = lib/nnsdk
+	url = https://github.com/open-ead/nnsdk.git
+[submodule "sys"]
+	path = sys
+	url = https://github.com/fruityloops1/LibHakkun.git

@@ -1,0 +1,6 @@
+/.cache/
+/.direnv/
+/__cmake_systeminformation/
+/build/
+/groove/
+/lib/std/

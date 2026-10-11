@@ -1,0 +1,119 @@
+@game
+__nnDetailNintendoSdkRuntimeObjectFile
+__nnDetailNintendoSdkRuntimeObjectFileRefer
+_fini
+_init
+aligned_alloc
+calloc
+end
+free
+malloc
+nndetailRoGetRoDataEnd
+nndetailRoGetRoDataStart
+nninitStartup
+nnMain
+_ZdlPv
+_ZdlPvm
+_ZdaPv
+_ZdaPvm
+_Znwm
+_Znam
+realloc
+
+@game:100
+CSTAGE_SequenceCreator = 0xB660
+CSTAGE_SequenceStarter = 0xB790
+CSTAGE_StageConstructor = 0x4D94F0
+CSTAGE_StageCreator = 0x488940
+CSTAGE_StageDestructor = 0x4D9A10
+CSTAGE_StageVTable = 0xD9D690
+
+CSOUND_Initializer = 0xCF60
+CSOUND_LoadWavMark = 0x516DA0
+CSOUND_PathFormatCall1 = 0x4EBE80
+CSOUND_PathFormatCall2 = 0x4EDA08
+CSOUND_PathSanitizer = 0x50B920
+CSOUND_Registry = 0xD96200
+
+BasicScene_Construct = 0x13AD00
+Changer_ChangeInstant = 0x4D7B40
+Changer_Construct = 0x4D7A10
+Changer_Destruct = 0x4D7AA0
+Runner_AppendThread = 0x5153A0
+SceneFlydisc_ChangeBackground = 0x18CBD0
+SceneFlydisc_SetBackground = 0x18C730
+SceneFlydisc_SetCountState = 0x18C7F0
+SceneFlydisc_ThrowDisc = 0x18D3F0
+SceneHungry_SpawnFlower = 0x1AF800
+SceneParasol_Open = 0x204970
+SceneParasol_OpenAll = 0x205030
+SceneRing_Hoop = 0x217960
+SceneRope_DoubleUnder = 0x2276A0
+SceneRope_Jump = 0x226AA0
+Scene_AttachChild = 0x13AFC0
+Scene_SetActive = 0x129660
+Scene_SetInputEnabled = 0x12A980
+StageRemix_CreateSceneBacteria = 0x4DAEC0
+StageRemix_CreateSceneBirds = 0x4DAF30
+StageRemix_CreateSceneBrush = 0x4DAF90
+StageRemix_CreateSceneCars = 0x4DAFF0
+StageRemix_CreateSceneClap = 0x4DB050
+StageRemix_CreateSceneCooking = 0x4DB0B0
+StageRemix_CreateSceneCrab = 0x4DB110
+StageRemix_CreateSceneDancer = 0x4DB180
+StageRemix_CreateSceneFlydisc = 0x4DB210
+StageRemix_CreateSceneGrasp = 0x4DB270
+StageRemix_CreateSceneGuardian = 0x4DB2D0
+StageRemix_CreateSceneHammer = 0x4DB320
+StageRemix_CreateSceneHungry = 0x4DB380
+StageRemix_CreateSceneHurdle = 0x4DB3E0
+StageRemix_CreateSceneInsect = 0x4DB440
+StageRemix_CreateSceneKaeru = 0x4DB4A0
+StageRemix_CreateSceneMoon = 0x4DB500
+StageRemix_CreateSceneParasol = 0x4DB550
+StageRemix_CreateScenePumpup = 0x4DB5C0
+StageRemix_CreateScenePutilabo = 0x4DB620
+StageRemix_CreateSceneRing = 0x4DB680
+StageRemix_CreateSceneRolling = 0x4DB6E0
+StageRemix_CreateSceneRope = 0x4DB740
+StageRemix_CreateSceneSamurai = 0x4DB7A0
+StageRemix_CreateSceneShinkai = 0x4DBA80
+StageRemix_CreateSceneSoccer = 0x4DB800
+StageRemix_CreateSceneSoftCatch = 0x4DB860
+StageRemix_CreateSceneTalk = 0x4DB8C0
+StageRemix_CreateSceneTheA = 0x4DB920
+StageRemix_CreateSceneThunder = 0x4DB980
+StageRemix_CreateSceneWiper = 0x4DBA00
+StageRemix_DecrementSceneCueCount = 0x4DAA50
+StageRemix_IncrementSceneCueCount = 0x4DAA30
+StageRemix_InitSubScene = 0x4D9DC0
+StageRemix_SetAllSceneCarryover = 0x4DA420
+StageRemix_SetAllSceneCarryoverTicks = 0x4D9E10
+StageRemix_SetCueScene = 0x4DAA70
+StageRemix_SetInitParasolOpen = 0x4DAE70
+StageRemix_SetSceneCarryover = 0x4DA400
+StageRemix_WaitSceneReady = 0x4D9EC0
+Stage_BopAnim = 0x1379a0
+Anim_FindChild = 0x4FBA20
+Anim_PlayAction = 0x4F8210
+Audio_Fade = 0x4EF060
+Stage_DisablePause = 0x138FC0
+Stage_EnablePause = 0x138F80
+Stage_EndGameplay = 0x138CD0
+Stage_FadeScreen = 0x1366E0
+Stage_FinishGameplaySession = 0x137140
+Stage_InitGameplay = 0x137050
+Stage_InitSM = 0x138B10
+Stage_PlayBeat = 0x1379a0
+Stage_PlayBgm = 0x139140
+Stage_PrepareSM = 0x139070
+Stage_SetComment = 0x1390E0
+Stage_SetEpilogueAndRatings = 0x136680
+Stage_StartGameplay = 0x138CE0
+Stage_ToResults = 0x138D40
+Stage_Unknown138D20 = 0x138D20
+Stage_WaitAudioReady = 0x139250
+Stage_WaitReady = 0x1398B0
+Thread_GetStopRequested = 0x514DD0
+Thread_New = 0x514A90
+Thread_Wait = 0x514D70
