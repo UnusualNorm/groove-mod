@@ -1,4 +1,29 @@
+#pragma once
+
 #if defined(__cplusplus)
+#include "game/anim.hpp"
+#include "game/audio.hpp"
+#include "game/changer.hpp"
+#include "game/global.hpp"
+#include "game/holder.hpp"
+#include "game/holder_custom.hpp"
+#include "game/incomplete.hpp"
+#include "game/istage.hpp"
+#include "game/ratings.hpp"
+#include "game/runner.hpp"
+#include "game/scene.hpp"
+#include "game/scene_basic.hpp"
+#include "game/scene_flydisc.hpp"
+#include "game/scene_hungry.hpp"
+#include "game/scene_parasol.hpp"
+#include "game/scene_ring.hpp"
+#include "game/scene_rope.hpp"
+#include "game/sequence.hpp"
+#include "game/stage.hpp"
+#include "game/stage_basic.hpp"
+#include "game/stage_remix.hpp"
+#include "game/thread.hpp"
+
 extern "C" {
 #endif
 
@@ -22,7 +47,6 @@ extern void _ZdaPvm(void *, unsigned long);
 extern void *_Znwm(unsigned long);
 extern void *_Znam(unsigned long);
 extern void *realloc(void *, unsigned long);
-extern void *Reset;
 
 #if defined(__cplusplus)
 }

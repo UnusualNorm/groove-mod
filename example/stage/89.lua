@@ -1,79 +1,84 @@
-hk.diag.hkLogSink("89")
-if not stage then error("not stage") end
+assert(stage, "not stage")
+hk.diag.hkLogSink("stage")
 
-local scene = Scene.new_basic(stage, Stage.get_render(stage), true);
-local changer = Changer.new(stage, scene);
-local runner = Stage.get_runner(stage);
-local thread_index = Stage.get_thread_index(stage);
-
----@type HolderCustom[]
+---@type game.HolderCustom[]
 local holders = {}
 for i = 1, 4 do
-    holders[i] = HolderCustom.new(nil);
+    holders[i] = game.HolderCustom(nil)
 end
 
-local ratings = Ratings.new_custom({
+local ratings = game.Ratings.newLua({ {
     name = "basic",
-    defer_positive_comment = true,
-    positive_threshold = -3,
-    negative_threshold = 9,
+    deferPositiveComment = true,
+    positiveThreshold = -3,
+    negativeThreshold = 9,
 }, {
     name = "tech",
-    positive_threshold = -2,
-    negative_threshold = 999,
+    positiveThreshold = -2,
+    negativeThreshold = 999,
 }, {
     name = "must",
-    positive_threshold = -1,
-    negative_threshold = 999,
+    positiveThreshold = -1,
+    negativeThreshold = 999,
 }, {
     name = "selfish",
-    suppress_nonnegative_comment = true,
-    positive_threshold = 0,
-    negative_threshold = 20,
-})
+    suppressNonnegativeComment = true,
+    positiveThreshold = 0,
+    negativeThreshold = 20,
+} })
 
-Stage.set_epilogue_and_ratings(
-    stage,
+EpilogueStrings = {
     "result_remix_00.msbt",
     "graph/epilogue/remix/type_27",
-    ratings,
-    0x3ff,
     "epilogue27",
     "from"
-);
+}
 
-Runner.append_thread(runner, Thread.new(runner, thread_index, "89_entry", {
+stage:setEpilogueAndRatings(
+    EpilogueStrings[1],
+    EpilogueStrings[2],
+    ratings,
+    0x3ff,
+    EpilogueStrings[3],
+    EpilogueStrings[4]
+)
+
+local scene = game.SceneBasic(stage, stage.render, "\1")
+local changer = game.Changer(stage, scene)
+stage.runner:appendThread(game.Thread.newLua(stage.runner, stage.threadIndex, "89_entry", {
     stage = stage,
     changer = changer,
     holders = holders,
-}, nil) or error("not entry"));
+}, nil))
 
 function GetSceneCount() return #holders end
 
 function GetScene(idx, unk)
-    local holder = holders[idx + 1];
+    local holder = holders[idx + 1]
     if not holder then return nil end
-    local new_scene = nil;
+
+    local new_scene = nil
     if idx == 0 then
-        new_scene = StageRemix.create_scene_ring(stage, 0);
+        new_scene = stage:createSceneRing(stage, 0)
     elseif idx == 1 then
-        new_scene = StageRemix.create_scene_parasol(stage, 0);
+        new_scene = stage:createSceneParasol(stage, 0)
     elseif idx == 2 then
-        new_scene = StageRemix.create_scene_flydisc(stage, 0);
+        new_scene = stage:createSceneFlydisc(stage, 0)
     elseif idx == 3 then
-        new_scene = StageRemix.create_scene_hungry(stage, 0);
+        new_scene = stage:createSceneHungry(stage, 0)
     end
+
     if not new_scene then return nil end
-    Holder.release(holder);
-    HolderCustom.set(holder, new_scene);
-    return holder;
+    holder:release()
+    holder.scene = new_scene
+    return holder
 end
 
 function Destroy()
     for i = 1, #holders do
-        Holder.destroy(holders[i]);
+        holders[i]:deleteObject()
     end
-    Changer.delete(changer);
-    Scene.delete(scene);
-    Ratings.delete_custom(ratings);
+    changer:deleteObject()
+    scene:deleteObject()
+    game.Ratings.deleteLua(ratings)
 end

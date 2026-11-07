@@ -2,7 +2,6 @@
 #include "../game.h"
 #include "../utils.h"
 #include "lauxlib.h"
-#include "lualib.h"
 #include <stdio.h>
 
 FILE *const stdout = NULL;
@@ -14,31 +13,6 @@ void *luaG_alloc(void *ud, void *ptr, size_t osize, size_t nsize) {
     return NULL;
   } else
     return realloc(ptr, nsize);
-}
-
-lua_State *luaG_newstate(void) {
-  lua_State *L = lua_newstate(luaG_alloc, NULL, 0);
-  if (!L)
-    return L;
-  luaopen_base(L);
-  luaG_open_game_anim(L);
-  luaG_open_game_audio(L);
-  luaG_open_game_changer(L);
-  luaG_open_game_holder(L);
-  luaG_open_game_holder_custom(L);
-  luaG_open_game_ratings(L);
-  luaG_open_game_runner(L);
-  luaG_open_game_scene(L);
-  luaG_open_game_scene_parasol(L);
-  luaG_open_game_scene_flydisc(L);
-  luaG_open_game_scene_hungry(L);
-  luaG_open_game_scene_ring(L);
-  luaG_open_game_scene_rope(L);
-  luaG_open_game_stage(L);
-  luaG_open_game_stage_remix(L);
-  luaG_open_game_thread(L);
-  luaG_open_hk(L);
-  return L;
 }
 
 void luaG_register(lua_State *L, const char *cn, const char *fn,
@@ -66,4 +40,17 @@ const char *luaG_leakstring(lua_State *L, int idx) {
   lua_pushvalue(L, idx);
   luaL_ref(L, LUA_REGISTRYINDEX);
   return str;
+}
+
+unsigned int luaG_check(lua_State *L, int status) {
+  if (status == LUA_OK)
+    return true;
+  luaG_logstring(L, -1);
+  lua_pop(L, 1);
+  return false;
+}
+
+void luaG_openlib(lua_State *L, const char *name, lua_CFunction func) {
+  luaL_requiref(L, name, func, 1);
+  lua_pop(L, 1);
 }

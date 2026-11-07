@@ -1,145 +1,151 @@
+assert(thread, "not thread")
+assert(argument, "not argument")
 hk.diag.hkLogSink("cues3")
-if not thread then error("not thread") end
-if not argument then error("not argument") end
 
----@type StageRemix
-local stage = argument.stage
----@type Holder[]
-local holders = argument.holders
+---@type game.StageRemix
+local stage = assert(argument.stage, "not argument.stage")
+---@type game.Holder[]
+local holders = assert(argument.holders, "not argument.holders")
 
 local function scene()
-    ---@type SceneHungry
-    return Holder.get(holders[4])
+    return holders[4]:get():asSceneHungry()
 end
 
-Thread.wait(thread, 10920)
-if Thread.get_stop_requested(thread) then return end
-StageRemix.set_cue_scene(stage, thread, 3)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "tech")
-SceneHungry.spawn_flower(scene(), thread, 0)
+thread:wait(10920)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 360)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "tech")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setCueScene(thread, 3)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 1680)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "tech")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setComment("tech")
+scene():spawnFlower(thread, 0)
+thread:wait(360)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 6240)
-if Thread.get_stop_requested(thread) then return end
-StageRemix.set_cue_scene(stage, thread, 3)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "must")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setComment("tech")
+scene():spawnFlower(thread, 0)
+thread:wait(1680)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 7680)
-if Thread.get_stop_requested(thread) then return end
-StageRemix.set_cue_scene(stage, thread, 3)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "basic")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setComment("tech")
+scene():spawnFlower(thread, 0)
+thread:wait(6240)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 1680)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "tech")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setCueScene(thread, 3)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 240)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "tech")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setComment("must")
+scene():spawnFlower(thread, 0)
+thread:wait(7680)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 5520)
-if Thread.get_stop_requested(thread) then return end
-StageRemix.set_cue_scene(stage, thread, 3)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "basic")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setCueScene(thread, 3)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 240)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "basic")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setComment("basic")
+scene():spawnFlower(thread, 0)
+thread:wait(1680)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 7440)
-if Thread.get_stop_requested(thread) then return end
-StageRemix.set_cue_scene(stage, thread, 3)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "basic")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setComment("tech")
+scene():spawnFlower(thread, 0)
+thread:wait(240)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 240)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "basic")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setComment("tech")
+scene():spawnFlower(thread, 0)
+thread:wait(5520)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 11040)
-if Thread.get_stop_requested(thread) then return end
-StageRemix.set_cue_scene(stage, thread, 3)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "basic")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setCueScene(thread, 3)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 1440)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "basic")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setComment("basic")
+scene():spawnFlower(thread, 0)
+thread:wait(240)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 480)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "basic")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setComment("basic")
+scene():spawnFlower(thread, 0)
+thread:wait(7440)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 9600)
-if Thread.get_stop_requested(thread) then return end
-StageRemix.set_cue_scene(stage, thread, 3)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "basic")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setCueScene(thread, 3)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 1920)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "basic")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setComment("basic")
+scene():spawnFlower(thread, 0)
+thread:wait(240)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 1920)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "tech")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setComment("basic")
+scene():spawnFlower(thread, 0)
+thread:wait(11040)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 240)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "tech")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setCueScene(thread, 3)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 1920)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "tech")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setComment("basic")
+scene():spawnFlower(thread, 0)
+thread:wait(1440)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 240)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "tech")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setComment("basic")
+scene():spawnFlower(thread, 0)
+thread:wait(480)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 1440)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "basic")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setComment("basic")
+scene():spawnFlower(thread, 0)
+thread:wait(9600)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 1920)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "tech")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setCueScene(thread, 3)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 240)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "tech")
-SceneHungry.spawn_flower(scene(), thread, 0)
+stage:setComment("basic")
+scene():spawnFlower(thread, 0)
+thread:wait(1920)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 12720)
-if Thread.get_stop_requested(thread) then return end
+stage:setComment("basic")
+scene():spawnFlower(thread, 0)
+thread:wait(1920)
+if thread:getStopRequested() then return end
+
+stage:setComment("tech")
+scene():spawnFlower(thread, 0)
+thread:wait(240)
+if thread:getStopRequested() then return end
+
+stage:setComment("tech")
+scene():spawnFlower(thread, 0)
+thread:wait(1920)
+if thread:getStopRequested() then return end
+
+stage:setComment("tech")
+scene():spawnFlower(thread, 0)
+thread:wait(240)
+if thread:getStopRequested() then return end
+
+stage:setComment("tech")
+scene():spawnFlower(thread, 0)
+thread:wait(1440)
+if thread:getStopRequested() then return end
+
+stage:setComment("basic")
+scene():spawnFlower(thread, 0)
+thread:wait(1920)
+if thread:getStopRequested() then return end
+
+stage:setComment("tech")
+scene():spawnFlower(thread, 0)
+thread:wait(240)
+if thread:getStopRequested() then return end
+
+stage:setComment("tech")
+scene():spawnFlower(thread, 0)
+thread:wait(12720)
+if thread:getStopRequested() then return end

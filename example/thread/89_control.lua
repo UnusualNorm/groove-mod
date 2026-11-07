@@ -1,158 +1,194 @@
+assert(thread, "not thread")
+assert(argument, "not argument")
 hk.diag.hkLogSink("control")
-if not thread then error("not thread") end
-if not argument then error("not argument") end
 
----@type Stage
-local stage = argument.stage
----@type Changer
-local changer = argument.changer
----@type Holder[]
-local holders = argument.holders
+---@type game.StageRemix
+local stage = assert(argument.stage, "not argument.stage")
+---@type game.Changer
+local changer = assert(argument.changer, "not argument.changer")
+---@type game.Holder[]
+local holders = assert(argument.holders, "not argument.holders")
 
 local function scene_ring()
-    ---@type SceneRing
-    return Holder.get(holders[1])
+    return holders[1]:get():asSceneRing()
 end
 
 local function scene_parasol()
-    ---@type SceneParasol
-    return Holder.get(holders[2])
+    return holders[2]:get():asSceneParasol()
 end
 
 local function scene_flydisc()
-    ---@type SceneFlydisc
-    return Holder.get(holders[3])
+    return holders[3]:get():asSceneFlydisc()
 end
 
 local function scene_hungry()
-    ---@type SceneHungry
-    return Holder.get(holders[4])
+    return holders[4]:get():asSceneHungry()
 end
 
-StageRemix.init_scene(stage, 0, -1, false)
-StageRemix.init_scene(stage, 2, -1, false)
-StageRemix.init_scene(stage, 3, -1, false)
-StageRemix.set_all_scene_carryover(stage, 2)
-StageRemix.set_all_scene_carryover_ticks(stage, 960)
-StageRemix.set_init_parasol_open(stage, false)
-Thread.wait(thread, 5760)
-if Thread.get_stop_requested(thread) then return end
-StageRemix.set_scene_carryover(stage, 1, 1)
-Changer.change_instant(changer, thread, 3)
-if Thread.get_stop_requested(thread) then return end
-Thread.wait(thread, 480)
-if Thread.get_stop_requested(thread) then return end
+stage:initScene(0, -1, 0)
+stage:initScene(2, -1, 0)
+stage:initScene(3, -1, 0)
+stage:setAllSceneCarryover(2)
+stage:setAllSceneCarryoverTicks(960)
+stage:setInitParasolOpen(0)
+thread:wait(5760)
+if thread:getStopRequested() then return end
+
+stage:setSceneCarryover(1, 1)
+changer:changeInstant(thread, 3)
+if thread:getStopRequested() then return end
+
+thread:wait(480)
+if thread:getStopRequested() then return end
+
 -- unk_7100203c60(scene_data, 1)
-Changer.change_instant(changer, thread, 0)
-if Thread.get_stop_requested(thread) then return end
-StageRemix.set_cue_scene(stage, thread, 1)
-if Thread.get_stop_requested(thread) then return end
-Thread.wait(thread, 480)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 1)
-if Thread.get_stop_requested(thread) then return end
-StageRemix.set_scene_carryover(stage, 1, 2)
-Thread.wait(thread, 2880)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 2)
-if Thread.get_stop_requested(thread) then return end
-SceneFlydisc.set_background(scene_flydisc(), "BG_IMG_B")
-SceneFlydisc.set_count_state(scene_flydisc(), true, false)
-Thread.wait(thread, 4800)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 3)
-if Thread.get_stop_requested(thread) then return end
-StageRemix.set_scene_carryover(stage, 3, 1)
-Thread.wait(thread, 3840)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 0)
-if Thread.get_stop_requested(thread) then return end
-Thread.wait(thread, 3840)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 3)
-if Thread.get_stop_requested(thread) then return end
-StageRemix.set_scene_carryover(stage, 3, 1)
-Thread.wait(thread, 2880)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 2)
-if Thread.get_stop_requested(thread) then return end
-SceneFlydisc.set_background(scene_flydisc(), "BG_IMG_B")
-SceneFlydisc.set_count_state(scene_flydisc(), true, false)
-Thread.wait(thread, 4800)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 3)
-if Thread.get_stop_requested(thread) then return end
-Thread.wait(thread, 4320)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 0)
-if Thread.get_stop_requested(thread) then return end
-Thread.wait(thread, 3360)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 3)
-if Thread.get_stop_requested(thread) then return end
-Thread.wait(thread, 2400)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 1)
-if Thread.get_stop_requested(thread) then return end
-Thread.wait(thread, 3840)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 0)
-if Thread.get_stop_requested(thread) then return end
-Thread.wait(thread, 1440)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 3)
-if Thread.get_stop_requested(thread) then return end
-StageRemix.set_scene_carryover(stage, 3, 2)
-Thread.wait(thread, 2400)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 2)
-if Thread.get_stop_requested(thread) then return end
-SceneFlydisc.set_background(scene_flydisc(), "BG_IMG_B")
-SceneFlydisc.set_count_state(scene_flydisc(), true, false)
-Thread.wait(thread, 2400)
-if Thread.get_stop_requested(thread) then return end
-local flydisc = scene_flydisc() or error("Flydisc scene missing")
-Anim.play_action(
-    Anim.find_child(
-        SceneFlydisc.get_anim(flydisc),
-        "count_base",
-        true
-    ) or error("not count_base"),
-    "FadeOut"
-)
-Audio.fade(0, SceneFlydisc.get_audio(flydisc), 2400)
-Thread.wait(thread, 2880)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 0)
-if Thread.get_stop_requested(thread) then return end
-Thread.wait(thread, 2880)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 3)
-if Thread.get_stop_requested(thread) then return end
-Thread.wait(thread, 4800)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 0)
-if Thread.get_stop_requested(thread) then return end
-Thread.wait(thread, 2880)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 1)
-if Thread.get_stop_requested(thread) then return end
-Thread.wait(thread, 4800)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 3)
-if Thread.get_stop_requested(thread) then return end
-Thread.wait(thread, 11520)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 0)
-if Thread.get_stop_requested(thread) then return end
-Thread.wait(thread, 1920)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 2)
-if Thread.get_stop_requested(thread) then return end
-SceneFlydisc.set_background(scene_flydisc(), "BG_IMG_B")
-Thread.wait(thread, 5760)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 1)
-if Thread.get_stop_requested(thread) then return end
-Thread.wait(thread, 3840)
-if Thread.get_stop_requested(thread) then return end
+changer:changeInstant(thread, 0)
+if thread:getStopRequested() then return end
+
+stage:setCueScene(thread, 1)
+if thread:getStopRequested() then return end
+
+thread:wait(480)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 1)
+if thread:getStopRequested() then return end
+
+stage:setSceneCarryover(1, 2)
+thread:wait(2880)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 2)
+if thread:getStopRequested() then return end
+
+scene_flydisc():setBackground("BG_IMG_B")
+scene_flydisc():setCountState(1, 0)
+thread:wait(4800)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 3)
+if thread:getStopRequested() then return end
+
+stage:setSceneCarryover(3, 1)
+thread:wait(3840)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 0)
+if thread:getStopRequested() then return end
+
+thread:wait(3840)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 3)
+if thread:getStopRequested() then return end
+
+stage:setSceneCarryover(3, 1)
+thread:wait(2880)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 2)
+if thread:getStopRequested() then return end
+
+scene_flydisc():setBackground("BG_IMG_B")
+scene_flydisc():setCountState(1, 0)
+thread:wait(4800)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 3)
+if thread:getStopRequested() then return end
+
+thread:wait(4320)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 0)
+if thread:getStopRequested() then return end
+
+thread:wait(3360)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 3)
+if thread:getStopRequested() then return end
+
+thread:wait(2400)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 1)
+if thread:getStopRequested() then return end
+
+thread:wait(3840)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 0)
+if thread:getStopRequested() then return end
+
+thread:wait(1440)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 3)
+if thread:getStopRequested() then return end
+
+stage:setSceneCarryover(3, 2)
+thread:wait(2400)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 2)
+if thread:getStopRequested() then return end
+
+scene_flydisc():setBackground("BG_IMG_B")
+scene_flydisc():setCountState(1, 0)
+thread:wait(2400)
+if thread:getStopRequested() then return end
+
+scene_flydisc().anim:findChild("count_base", 1):playAction("FadeOut")
+scene_flydisc().audio:fade(0, 2400)
+thread:wait(2880)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 0)
+if thread:getStopRequested() then return end
+
+thread:wait(2880)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 3)
+if thread:getStopRequested() then return end
+
+thread:wait(4800)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 0)
+if thread:getStopRequested() then return end
+
+thread:wait(2880)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 1)
+if thread:getStopRequested() then return end
+
+thread:wait(4800)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 3)
+if thread:getStopRequested() then return end
+
+thread:wait(11520)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 0)
+if thread:getStopRequested() then return end
+
+thread:wait(1920)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 2)
+if thread:getStopRequested() then return end
+
+scene_flydisc():setBackground("BG_IMG_B")
+thread:wait(5760)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 1)
+if thread:getStopRequested() then return end
+
+thread:wait(3840)
+if thread:getStopRequested() then return end

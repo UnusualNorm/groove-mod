@@ -1,0 +1,4 @@
+@game:100
+_ZN4game6Runner12appendThreadEPNS_6ThreadE = 0x5153A0
+_ZN4game6RunnerD1Ev = 0x515040
+_ZN4game6RunnerD2Ev = 0x515040

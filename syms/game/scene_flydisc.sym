@@ -1,0 +1,5 @@
+@game:100
+_ZN4game12SceneFlydisc13setBackgroundEPKc = 0x18C730
+_ZN4game12SceneFlydisc13setCountStateEhh = 0x18C7F0
+_ZN4game12SceneFlydisc16changeBackgroundEPKc = 0x18CBD0
+_ZN4game12SceneFlydisc9throwDiscEPNS_6ThreadEiiih = 0x18D3F0

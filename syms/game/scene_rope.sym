@@ -1,0 +1,3 @@
+@game:100
+_ZN4game9SceneRope11doubleUnderEPNS_6ThreadEijj = 0x2276A0
+_ZN4game9SceneRope4jumpEPNS_6ThreadEij = 0x226AA0

@@ -1,0 +1,6 @@
+@game:100
+_ZN4game7Changer13changeInstantEPNS_6ThreadEi = 0x4D7B40
+_ZN4game7ChangerC1EPNS_5StageEPNS_5SceneE = 0x4D7A10
+_ZN4game7ChangerC2EPNS_5StageEPNS_5SceneE = 0x4D7A10
+_ZN4game7ChangerD1Ev = 0x4D7AA0
+_ZN4game7ChangerD2Ev = 0x4D7AA0

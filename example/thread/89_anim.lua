@@ -1,17 +1,17 @@
+assert(thread, "not thread")
+assert(argument, "not argument")
 hk.diag.hkLogSink("anim")
-if not thread then error("not thread") end
-if not argument then error("not argument") end
 
----@type StageRemix
-local stage = argument.stage
+---@type game.StageRemix
+local stage = assert(argument.stage, "not argument.stage")
 
-Thread.wait(thread, 17880)
-if Thread.get_stop_requested(thread) then return end
-Stage.bop_anim(stage, thread, 0, 480, 0)
+thread:wait(17880)
+if thread:getStopRequested() then return end
+stage:bopAnim(thread, 0, 480, 0)
 
-Thread.wait(thread, 69120)
-if Thread.get_stop_requested(thread) then return end
-Stage.bop_anim(stage, thread, 0, 480, 1)
+thread:wait(69120)
+if thread:getStopRequested() then return end
+stage:bopAnim(thread, 0, 480, 1)
 
-Thread.wait(thread, 3840)
-if Thread.get_stop_requested(thread) then return end
+thread:wait(3840)
+if thread:getStopRequested() then return end

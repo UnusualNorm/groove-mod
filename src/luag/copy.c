@@ -20,6 +20,9 @@ void luaG_copyvalue(lua_State *src, lua_State *dst, int index) {
   case LUA_TBOOLEAN:
     lua_pushboolean(dst, lua_toboolean(src, index));
     break;
+  case LUA_TLIGHTUSERDATA:
+    lua_pushlightuserdata(dst, lua_touserdata(src, index));
+    break;
   case LUA_TNUMBER:
     if (lua_isinteger(src, index))
       lua_pushinteger(dst, lua_tointeger(src, index));
@@ -35,8 +38,9 @@ void luaG_copyvalue(lua_State *src, lua_State *dst, int index) {
   case LUA_TTABLE:
     luaG_copytable(src, dst, index);
     break;
-  case LUA_TLIGHTUSERDATA:
-    lua_pushlightuserdata(dst, lua_touserdata(src, index));
+  case LUA_TUSERDATA:
+    if (!luaG_copyuserdata(src, dst, index))
+      lua_pushnil(dst);
     break;
   default:
     lua_pushnil(dst);

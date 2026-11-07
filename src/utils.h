@@ -1,6 +1,8 @@
 #include <stdbool.h>
 
 #if defined(__cplusplus)
+#include "utils/dir_iterator.hpp"
+
 extern "C" {
 #endif
 

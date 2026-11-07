@@ -1,0 +1,9 @@
+# This list is non-echaustive and is only representative of extra pacman packages *I* need to install compared to
+# https://github.com/UnusualNorm/omnom-os.git commit d79ad5cf441e76b0202efe7b78d79724f83f0022
+clang
+cmake
+lld
+llvm
+python-lz4
+python-pyelftools
+swig

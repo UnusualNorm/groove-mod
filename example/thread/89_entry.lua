@@ -1,53 +1,62 @@
+assert(thread, "not thread")
+assert(argument, "not argument")
 hk.diag.hkLogSink("entry")
-if not thread then error("not thread") end
-if not argument then error("not argument") end
 
----@type StageRemix
-local stage = argument.stage
----@type Changer
-local changer = argument.changer
+---@type game.StageRemix
+local stage = assert(argument.stage, "not argument.stage")
+---@type game.Changer
+local changer = assert(argument.changer, "not argument.changer")
 
-Stage.fade_screen(stage, 0, 0)
-Stage.init_sm(stage, 121, true)
-Stage.wait_ready(stage, thread, false, -1)
-if Thread.get_stop_requested(thread) then return end
-Stage.prepare_sm(stage, 121)
-Stage.init_gameplay(stage, false)
-StageRemix.set_init_parasol_open(stage, false)
-StageRemix.init_scene(stage, 1, -1, true)
-StageRemix.wait_scene_ready(stage, thread, 1, false)
-if Thread.get_stop_requested(thread) then return end
-Changer.change_instant(changer, thread, 1)
-if Thread.get_stop_requested(thread) then return end
-Stage.fade_screen(stage, 480, 1)
-Stage.wait_audio_ready(stage, thread, -1, 0)
-if Thread.get_stop_requested(thread) then return end
-Thread.wait(thread, 480)
-if Thread.get_stop_requested(thread) then return end
-Stage.enable_pause(stage)
-Stage.play_bgm(1, 1, stage, thread, 121, 960, 0)
-if Thread.get_stop_requested(thread) then return end
-local runner = Stage.get_runner(stage)
-local thread_index = Stage.get_thread_index(stage)
-Runner.append_thread(runner, Thread.new(runner, thread_index, "89_control", argument, thread) or error("not control"))
-Runner.append_thread(runner, Thread.new(runner, thread_index, "89_cues0", argument, thread) or error("not cues0"))
-Runner.append_thread(runner, Thread.new(runner, thread_index, "89_cues1", argument, thread) or error("not cues1"))
-Runner.append_thread(runner, Thread.new(runner, thread_index, "89_cues2", argument, thread) or error("not cues2"))
-Runner.append_thread(runner, Thread.new(runner, thread_index, "89_cues3", argument, thread) or error("not cues3"))
-Runner.append_thread(runner, Thread.new(runner, thread_index, "89_anim", argument, thread) or error("not anim"))
-Stage.start_gameplay(stage)
-Thread.wait(thread, 960)
-if Thread.get_stop_requested(thread) then return end
-Stage.unk_7100138d20(stage)
-Thread.wait(thread, 91200)
-if Thread.get_stop_requested(thread) then return end
-Stage.end_gameplay(stage)
-Thread.wait(thread, 480)
-if Thread.get_stop_requested(thread) then return end
-Stage.fade_screen(stage, 1440, 0)
-Stage.disable_pause(stage)
-Thread.wait(thread, 1920)
-if Thread.get_stop_requested(thread) then return end
-Stage.finish_gameplay_session(stage)
-if Thread.get_stop_requested(thread) then return end
-Stage.to_results(stage)
+stage:fadeScreen(0, 0)
+stage:initSm(121, 1)
+stage:waitReady(thread, 0, -1)
+if thread:getStopRequested() then return end
+
+stage:prepareSm(121)
+stage:initGameplay(0)
+stage:setInitParasolOpen(0)
+stage:initScene(1, -1, 1)
+stage:waitSceneReady(thread, 1, 0)
+if thread:getStopRequested() then return end
+
+changer:changeInstant(thread, 1)
+if thread:getStopRequested() then return end
+
+stage:fadeScreen(480, 1)
+stage:waitAudioReady(thread, -1, 0)
+if thread:getStopRequested() then return end
+
+thread:wait(480)
+if thread:getStopRequested() then return end
+
+stage:enablePause()
+stage:playBgm(1, 1, thread, 121, 960, 0)
+if thread:getStopRequested() then return end
+
+stage.runner:appendThread(game.Thread.newLua(stage.runner, stage.threadIndex, "89_control", argument, thread))
+stage.runner:appendThread(game.Thread.newLua(stage.runner, stage.threadIndex, "89_cues0", argument, thread))
+stage.runner:appendThread(game.Thread.newLua(stage.runner, stage.threadIndex, "89_cues1", argument, thread))
+stage.runner:appendThread(game.Thread.newLua(stage.runner, stage.threadIndex, "89_cues2", argument, thread))
+stage.runner:appendThread(game.Thread.newLua(stage.runner, stage.threadIndex, "89_cues3", argument, thread))
+stage.runner:appendThread(game.Thread.newLua(stage.runner, stage.threadIndex, "89_anim", argument, thread))
+stage:startGameplay()
+thread:wait(960)
+if thread:getStopRequested() then return end
+
+stage:unk7100138d20()
+thread:wait(91200)
+if thread:getStopRequested() then return end
+
+stage:endGameplay()
+thread:wait(480)
+if thread:getStopRequested() then return end
+
+stage:fadeScreen(1440, 0)
+stage:disablePause()
+thread:wait(1920)
+if thread:getStopRequested() then return end
+
+stage:finishGameplaySession()
+if thread:getStopRequested() then return end
+
+stage:toResults()

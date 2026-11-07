@@ -1,0 +1,7 @@
+@game:100
+_ZN4game10StageBasic11runCategoryEPNS_6ThreadE = 0x48AC80
+_ZN4game10StageBasic9unknown90Ev = 0x4D8EB0
+_ZN4game10StageBasicC1EPNS_8SequenceEiiiiii = 0x4D8C10
+_ZN4game10StageBasicC2EPNS_8SequenceEiiiiii = 0x4D8C10
+_ZN4game10StageBasicD1Ev = 0x4D8D40
+_ZN4game10StageBasicD2Ev = 0x4D8D40

@@ -1,0 +1,9 @@
+@game:100
+_ZN4game6Thread16getStopRequestedEv = 0x514DD0
+_ZN4game6Thread4waitEi = 0x514D70
+_ZN4game6Thread9unknown10Ev = 0x514E00
+_ZN4game6Thread9unknown18Ev = 0x514EE0
+_ZN4game6ThreadC1EPNS_6RunnerEiPFvPS0_PvES4_S3_ = 0x514A90
+_ZN4game6ThreadC2EPNS_6RunnerEiPFvPS0_PvES4_S3_ = 0x514A90
+_ZN4game6ThreadD1Ev = 0x514BC0
+_ZN4game6ThreadD2Ev = 0x514BC0

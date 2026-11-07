@@ -1,56 +1,59 @@
+assert(thread, "not thread")
+assert(argument, "not argument")
 hk.diag.hkLogSink("cues1")
-if not thread then error("not thread") end
-if not argument then error("not argument") end
 
----@type StageRemix
-local stage = argument.stage
----@type Holder[]
-local holders = argument.holders
+---@type game.StageRemix
+local stage = assert(argument.stage, "not argument.stage")
+---@type game.Holder[]
+local holders = assert(argument.holders, "not argument.holders")
 
 local function scene()
-    ---@type SceneParasol
-    return Holder.get(holders[2])
+    return holders[2]:get():asSceneParasol()
 end
 
-Thread.wait(thread, 1440)
-if Thread.get_stop_requested(thread) then return end
-StageRemix.increment_scene_cue_count(stage, 1)
-StageRemix.set_cue_scene(stage, thread, 1)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "must")
-SceneParasol.open(scene(), thread, 720, 1, 0, 0)
+thread:wait(1440)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 3840)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "must")
-SceneParasol.open(scene(), thread, 720, 0, 0, 0)
-StageRemix.decrement_scene_cue_count(stage, 1)
+stage:incrementSceneCueCount(1)
+stage:setCueScene(thread, 1)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 33120)
-if Thread.get_stop_requested(thread) then return end
-StageRemix.set_cue_scene(stage, thread, 1)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "basic")
-SceneParasol.open(scene(), thread, 960, 1, 0, 0)
+stage:setComment("must")
+scene():open(thread, 720, 1, 0, 0)
+thread:wait(3840)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 24480)
-if Thread.get_stop_requested(thread) then return end
-StageRemix.set_cue_scene(stage, thread, 1)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "basic")
-SceneParasol.open(scene(), thread, 960, 1, 0, 0)
+stage:setComment("must")
+scene():open(thread, 720, 0, 0, 0)
+stage:decrementSceneCueCount(1)
+thread:wait(33120)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 480)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "basic")
-SceneParasol.open(scene(), thread, 960, 0, 0, 0)
+stage:setCueScene(thread, 1)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 23280)
-if Thread.get_stop_requested(thread) then return end
-StageRemix.set_cue_scene(stage, thread, 1)
-if Thread.get_stop_requested(thread) then return end
-Stage.set_comment(stage, "must")
-SceneParasol.open(scene(), thread, 720, 1, 0, 0)
+stage:setComment("basic")
+scene():open(thread, 960, 1, 0, 0)
+thread:wait(24480)
+if thread:getStopRequested() then return end
 
-Thread.wait(thread, 3120)
-if Thread.get_stop_requested(thread) then return end
+stage:setCueScene(thread, 1)
+if thread:getStopRequested() then return end
+
+stage:setComment("basic")
+scene():open(thread, 960, 1, 0, 0)
+thread:wait(480)
+if thread:getStopRequested() then return end
+
+stage:setComment("basic")
+scene():open(thread, 960, 0, 0, 0)
+thread:wait(23280)
+if thread:getStopRequested() then return end
+
+stage:setCueScene(thread, 1)
+if thread:getStopRequested() then return end
+
+stage:setComment("must")
+scene():open(thread, 720, 1, 0, 0)
+thread:wait(3120)
+if thread:getStopRequested() then return end
